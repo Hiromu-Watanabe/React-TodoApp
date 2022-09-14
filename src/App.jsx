@@ -5,6 +5,7 @@ import "./styles.css";
 export const App = () => {
     // eslint-disable-next-line
   const [incompleteTodos, setIncompleteTodos] = useState(['あああ', 'いいい'])
+  const [completeTodos, setCompleteTodos] = useState(['uuu'])
   return (
     <>
       <div className="input-area">
@@ -29,8 +30,14 @@ export const App = () => {
         <p className="title">完了のTODO</p>
         <ul>
           <div className="list-row">
-            <li>ううう</li>
-            <button>戻す</button>    
+            {completeTodos.map((todo) => {
+              return (
+                <div key={todo} className="list-row">
+                  <li>{todo}</li>
+                  <button>戻す</button>       
+                </div>
+              )
+            })}
           </div>
         </ul>
       </div>
