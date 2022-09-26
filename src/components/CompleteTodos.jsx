@@ -1,9 +1,7 @@
 import React from 'react'
 
 export const CompleteTodos = (props) => {
-    
     const { todos, onClickBack } = props
-    
     return (
         <div className="complete-area">
         <p className="title">完了のTODO</p>
