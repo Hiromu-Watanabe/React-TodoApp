@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./styles.css";
 import { InputTodo } from "./components/InputTodo";
 import { IncompleteTodos } from "./components/InCompleteTodos"
+import { CompleteTodos } from "./components/CompleteTodos"
 
 export const App = () => {
     // eslint-disable-next-line
@@ -32,7 +33,7 @@ export const App = () => {
   }
   
   const onClickBack = (backTodo, index) => {
-    const newCompleteTodos = [...incompleteTodos]
+    const newCompleteTodos = [...completeTodos]
     newCompleteTodos.splice(index, 1)
     setCompleteTodos(newCompleteTodos)
     
@@ -42,25 +43,20 @@ export const App = () => {
   
   return (
     <>
-      <InputTodo newTodo={newTodo} onChange={onChangeNewTodo} onClick={onClickAdd}/>
+      <InputTodo 
+        newTodo={newTodo} 
+        onChange={onChangeNewTodo} 
+        onClick={onClickAdd}
+      />
       <IncompleteTodos 
         todos={incompleteTodos} 
         onClickComplete={onClickComplete} 
         onClickDelete={onClickDelete}
       />
-      <div className="complete-area">
-        <p className="title">完了のTODO</p>
-        <ul>
-          {completeTodos.map((todo, index) => {
-            return (
-              <div className="list-row">
-                <li>{todo}</li>
-                <button onClick={() => onClickBack(todo, index)}>戻す</button>    
-              </div>     
-            )
-          })}
-        </ul>
-      </div>
+      <CompleteTodos 
+        todos={completeTodos} 
+        onClickBack={onClickBack} 
+      />
     </>
   );
 };
